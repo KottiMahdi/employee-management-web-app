@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class DetailEvenement : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        var ID_Evenement = Convert.ToInt32(Request.QueryString["ID_Evenement"]);
+
+
+        DataLayerExperienceDataContext Layer = new DataLayerExperienceDataContext();
+
+        var req = (from p in Layer.GetDetailEven_ByIDEvenement(ID_Evenement)
+                   select p).ToList();
+
+        TxtType.Text = req[0].Type.ToString();
+        TxtObjet.Text = req[0].Objet.ToString();
+        DtDateDebut.Date = req[0].DateDebut.ToString();
+        HDebut.Text = req[0].Heure.ToString();
+        DtDateFin.Date = req[0].DateFin.ToString();
+        HFin.Text = req[0].HeureFin.ToString();
+        TxtLieu.Text = req[0].Lieu.ToString();
+        TxtDescriptionEv.Text = req[0].DescriptionEv.ToString();
+        TxtAttribue_a.Text = req[0].Attribue_a.ToString();
+
+       
+
+    }
+}

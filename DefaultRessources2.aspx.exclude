@@ -1,0 +1,196 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DefaultRessources2.aspx.cs" Inherits="DefaultRessources2" %>
+
+<%@ Register Assembly="DevExpress.Web.v20.1, Version=20.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+
+
+   <form id="form1" runat="server">
+           <script type="text/javascript">
+
+
+               function CallbackRessources() {
+                   alert(1);
+               }
+
+           </script>
+
+        <div>
+
+
+            <dx:ASPxSplitter ID="ASPxSplitter1" runat="server" EnableTheming="True" Theme="iOS"
+                 Width="100%"  Height="100%" FullscreenMode="True" ShowCollapseBackwardButton="True" ShowCollapseForwardButton="True">
+                <Panes>
+                    <dx:SplitterPane Size="22%"><ContentCollection>
+<dx:SplitterContentControl runat="server">
+    <dx:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False"
+        DataSourceID="SqlDataSource2" width="100%" KeyFieldName="id_societe" Theme="Aqua" EnableTheming="True" >
+        <ClientSideEvents FocusedRowChanged="CallbackRessources" />
+        <SettingsBehavior AllowFocusedRow="True" />
+        <SettingsSearchPanel Visible="True"/>
+        <Columns>
+
+            <dx:GridViewDataTextColumn FieldName="id_societe" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="0" Visible="False">
+                <EditFormSettings Visible="False" />
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="nom_societe" ShowInCustomizationForm="True" VisibleIndex="1" Caption="Societe">
+            </dx:GridViewDataTextColumn>
+        </Columns>
+    </dx:ASPxGridView>
+                        </dx:SplitterContentControl>
+</ContentCollection>
+                
+
+                        
+                    </dx:SplitterPane>
+                    <dx:SplitterPane><ContentCollection>
+<dx:SplitterContentControl runat="server">
+    <dx:ASPxGridView ID="ASPxGridView1"  runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="id_resources" Theme="Aqua" Font-Strikeout="False" Font-Underline="False" style="margin-right: 300px" Width="100%" EditFormLayoutProperties-SettingsItems-Height="100%" 
+        PreviewFieldName="id_fonct" >
+         <SettingsEditing Mode="Batch">
+         </SettingsEditing>
+        <Settings ShowFilterRow="true" VerticalScrollableHeight="200" VerticalScrollBarMode="Visible" />
+        <SettingsCommandButton>
+            <NewButton>
+                <Image Url="Image/add_large.png" Width="20px">
+                </Image>
+            </NewButton>
+            <UpdateButton>
+                <Image ToolTip="Save changes and close Edit Form" Url="Image/save.gif">
+                    </Image>
+            </UpdateButton>
+            <CancelButton ButtonType="Image" RenderMode="Image">
+            <Image ToolTip="Close Edit Form without saving changes" Url="Image/cancel.gif">
+                 </Image>
+            </CancelButton>
+             <DeleteButton>
+                <Image Url="Image/Delete_32x32.png" Width="20px">
+                 </Image>
+            </DeleteButton>
+        </SettingsCommandButton>
+        <SettingsSearchPanel Visible="True" />
+
+<EditFormLayoutProperties>
+<SettingsItems Height="100%"></SettingsItems>
+</EditFormLayoutProperties>
+        <Columns>
+            <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" ShowNewButtonInHeader="True"
+                 VisibleIndex="0">
+            </dx:GridViewCommandColumn>
+            <dx:GridViewDataTextColumn FieldName="id_resources" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="1" Visible="False">
+                <EditFormSettings Visible="False" />
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="id_societer" ShowInCustomizationForm="True" VisibleIndex="2" Caption="Societe">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Nom" ShowInCustomizationForm="True" VisibleIndex="4">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Prer" ShowInCustomizationForm="True" VisibleIndex="5">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Age" ShowInCustomizationForm="True" VisibleIndex="6">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Email" ShowInCustomizationForm="True" VisibleIndex="7">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Fonction" FieldName="id_fonct" ShowInCustomizationForm="True" VisibleIndex="3">
+                <PropertiesComboBox DataSourceID="SqlDataSource4" TextField="nom_fonct" ValueField="id_fonct">
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
+        </Columns>
+    </dx:ASPxGridView>
+   </dx:SplitterContentControl>
+</ContentCollection>
+
+                    </dx:SplitterPane>
+                </Panes>
+            </dx:ASPxSplitter>
+            
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RessourceConnectionString %>" DeleteCommand="deleteRessources" DeleteCommandType="StoredProcedure" InsertCommand="InsertRessources" InsertCommandType="StoredProcedure" SelectCommand="SELECT * FROM [Ressouces]" UpdateCommand="updateRessources" UpdateCommandType="StoredProcedure">
+                <DeleteParameters>
+                    <asp:Parameter Name="id_resources" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="id_societer" Type="Int32" />
+                    <asp:Parameter Name="id_fonct" Type="Int32" />
+                    <asp:Parameter Name="Nom" Type="String" />
+                    <asp:Parameter Name="Prer" Type="String" />
+                    <asp:Parameter Name="Age" Type="String" />
+                    <asp:Parameter Name="Email" Type="String" />
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="id_resources" Type="Int32" />
+                    <asp:Parameter Name="id_societer" Type="Int32" />
+                    <asp:Parameter Name="id_fonct" Type="Int32" />
+                    <asp:Parameter Name="Nom" Type="String" />
+                    <asp:Parameter Name="Prer" Type="String" />
+                    <asp:Parameter Name="Age" Type="String" />
+                    <asp:Parameter Name="Email" Type="String" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+
+            <SettingsCommandButton>
+                <NewButton>
+                    <br />
+            s<br />
+            
+            <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:RessourceConnectionString %>" DeleteCommand="deleteRessources" DeleteCommandType="StoredProcedure" InsertCommand="InsertRessources" InsertCommandType="StoredProcedure" SelectCommand="GetFonctions" UpdateCommand="updateRessources" UpdateCommandType="StoredProcedure" SelectCommandType="StoredProcedure">
+                <DeleteParameters>
+                    <asp:Parameter Name="id_resources" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="id_societer" Type="Int32" />
+                    <asp:Parameter Name="id_fonct" Type="Int32" />
+                    <asp:Parameter Name="Nom" Type="String" />
+                    <asp:Parameter Name="Prer" Type="String" />
+                    <asp:Parameter Name="Age" Type="String" />
+                    <asp:Parameter Name="Email" Type="String" />
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="id_resources" Type="Int32" />
+                    <asp:Parameter Name="id_societer" Type="Int32" />
+                    <asp:Parameter Name="id_fonct" Type="Int32" />
+                    <asp:Parameter Name="Nom" Type="String" />
+                    <asp:Parameter Name="Prer" Type="String" />
+                    <asp:Parameter Name="Age" Type="String" />
+                    <asp:Parameter Name="Email" Type="String" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+
+                    <Image Url="Image/add_large.png" Width="20px" />
+                </NewButton>
+
+
+            </SettingsCommandButton>
+
+                        </dx:SplitterPane>
+                        <dx:SplitterPane>
+                            <Panes>
+                                <dx:SplitterPane>
+                                    <ContentCollection>
+                                        <dx:SplitterContentControl runat="server">
+                                              <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RessourceConnectionString %>" SelectCommand="GetSociete" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                                        </dx:SplitterContentControl>
+                                    </ContentCollection>
+                                </dx:SplitterPane>
+                            </Panes>
+
+
+        </div>
+    </form>
+</body>
+</html>
+
+ <%--<table>
+     <tr>
+         <td>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RessourceConnectionString %>" SelectCommand="GetSociete" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+         </td>
+         <td>
+             &nbsp;</td>
+     </tr>
+ </table>--%>
